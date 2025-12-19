@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="HandheldFriendly" content="true" />
+  <title>Home page</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:700,900&display=swap" rel="stylesheet" />
+</head>
+
+<body class="glow-bg">
+  <div id="particles-js"></div>
+
+  <main class="center-content">
+    <h1 class="glow-title">BEHIND THE CODE</h1>
+    <div class="glow-subline">
+      <span class="blue">One developer.</span>
+      <span class="normal"> One vision.</span>
+      <span class="pink"> Get to know me !!</span>
+    </div>
+  </main>
+
+  <script src="assets/js/particles.js"></script>
+
+  <script>
+    // Subline animation (unchanged)
+    document.addEventListener("DOMContentLoaded", () => {
+      const words = document.querySelectorAll(".glow-subline span");
+      let i = 0;
+      const animate = () => {
+        if (i < words.length) {
+          words[i].style.opacity = 1;
+          words[i].style.animationPlayState = "running";
+          i++;
+          setTimeout(animate, 310);
+        }
+      };
+      animate();
+    });
+  </script>
+
+  <!-- 📱 MOBILE SWIPE ONLY -->
+  <script>
+    if (window.innerWidth <= 768) {
+
+      let startX = 0;
+
+      document.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+
+      document.addEventListener("touchend", e => {
+        const endX = e.changedTouches[0].clientX;
+        const deltaX = endX - startX;
+
+        // Swipe LEFT → Portfolio
+        if (deltaX < -120) {
+          document.body.style.transition = "transform 0.4s ease";
+          document.body.style.transform = "translateX(-100vw)";
+          setTimeout(() => {
+            window.location.href = "brijesh.html";
+          }, 400);
+        }
+      });
+    }
+  </script>
+
+
+
+<script>
+/* =========================================
+   📱 Swipe Hint – Landing Page
+========================================= */
+if (window.innerWidth <= 768) {
+
+  if (!sessionStorage.getItem("landingSwipeHint")) {
+
+    const hint = document.createElement("div");
+    hint.className = "swipe-hint";
+    hint.innerHTML = `
+      <span class="arrow">←</span>
+      <span>SWIPE</span>
+    `;
+
+    document.body.appendChild(hint);
+    sessionStorage.setItem("landingSwipeHint", "shown");
+
+    setTimeout(() => hint.remove(), 4500);
+  }
+}
+</script>
+
+
+<!-- 🔥 Swipe Hint (Mobile Only) -->
+<div id="swipeHint">
+  <span class="swipe-arrow"></span>
+  <span class="swipe-text">SWIPE</span>
+  <span class="swipe-arrow">❯❯❯❯❯</span>
+</div>
+
+
+
+</body>
+</html>
